@@ -80,7 +80,7 @@ Widget userNameShowWidget({required String userName}) {
 
 Widget homeAppBar({required UserMobx userMobx,required TextEditingController controller,}) {
   return AppBar(
-    title: const TextWidgetCommon(text: "PAY MANAGER"),
+    title: const TextWidgetCommon(text: "Payee Manager"),
     actions: [
       TextButton(
         onPressed: () {

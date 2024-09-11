@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payee_info/core/constants/height_width.dart';
 import 'package:payee_info/view/widgets/home/home_body.dart';
 import 'package:provider/provider.dart';
 import 'package:payee_info/view_model/mobx/user_mobx.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  TextEditingController amountController = TextEditingController();
+  TextEditingController amountController = TextEditingController(text: '2500');
 
   @override
   void initState() {
@@ -39,8 +40,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: screenWidth(context: context),
+          height: screenHeight(context: context),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: homeBody(amountController: amountController),

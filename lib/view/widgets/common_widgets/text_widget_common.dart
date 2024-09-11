@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextWidgetCommon extends StatelessWidget {
   const TextWidgetCommon({
@@ -36,13 +37,12 @@ class TextWidgetCommon extends StatelessWidget {
       overflow: overflow,
       softWrap: softWrap,
       text,
-      style: TextStyle(
+      style: GoogleFonts.abrilFatface(
+        fontSize: fontSize,
         color: textColor,
         fontWeight: fontWeight,
-        fontSize: fontSize,
-        decoration: decoration,
         fontStyle: fontStyle,
-        fontFamily: fontFamily,
+        decoration: decoration,
       ),
     );
   }

@@ -11,15 +11,6 @@ const kHeight35 = SizedBox(height: 35);
 const kHeight40 = SizedBox(height: 40);
 const kHeight45 = SizedBox(height: 45);
 const kHeight50 = SizedBox(height: 50);
-const kHeight55 = SizedBox(height: 55);
-const kHeight60 = SizedBox(height: 60);
-const kHeight65 = SizedBox(height: 65);
-const kHeight70 = SizedBox(height: 70);
-const kHeight75 = SizedBox(height: 75);
-const kHeight80 = SizedBox(height: 80);
-const kHeight85 = SizedBox(height: 85);
-const kHeight90 = SizedBox(height: 90);
-const kHeight100 = SizedBox(height: 100);
 // width
 const kWidth2 = SizedBox(width:  2);
 const kWidth5 = SizedBox(width:  5);
@@ -32,14 +23,12 @@ const kWidth35 = SizedBox(width:  35);
 const kWidth40 = SizedBox(width:  40);
 const kWidth45 = SizedBox(width:  45);
 const kWidth50 = SizedBox(width:  50);
-const kWidth55 = SizedBox(width:  55);
-const kWidth60 = SizedBox(width:  60);
-const kWidth65 = SizedBox(width:  65);
-const kWidth70 = SizedBox(width:  70);
-const kWidth75 = SizedBox(width:  75);
-const kWidth80 = SizedBox(width:  80);
-const kWidth85 = SizedBox(width:  85);
-const kWidth90 = SizedBox(width:  90);
-const kWidth100 = SizedBox(width:  100);
+
 
 const zeroMeasuredWidget = SizedBox(height: 0,width: 0);
+double screenWidth({required BuildContext context}){
+  return MediaQuery.of(context).size.width;
+}
+double screenHeight({required BuildContext context}){
+  return MediaQuery.of(context).size.height;
+}
