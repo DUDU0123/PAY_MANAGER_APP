@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:payee_info/core/constants/colors.dart';
 
 class TextFieldCommon extends StatelessWidget {
@@ -66,9 +67,9 @@ class TextFieldCommon extends StatelessWidget {
         focusedBorder: border,
         suffixIcon: suffixIcon,
         hintText: hintText,
-        labelStyle:const TextStyle(
-          color: kBlack,
-        ),
+        labelStyle: GoogleFonts.alegreyaSansSc(
+        color: kBlack,
+      ),
         hintStyle: hintStyle,
       ),
     );

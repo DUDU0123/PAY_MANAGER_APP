@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:payee_info/core/constants/colors.dart';
 import 'package:payee_info/core/utils/navigator_key.dart';
 import 'package:payee_info/model/models/visitor_model/visitor_model.dart';
@@ -34,11 +35,15 @@ Widget userAmountShowWidget({required String amount}) {
   );
 }
 
-Widget userAmountEditWidget(
-    {required String amount, required Function(String) onChanged, required TextEditingController controller,}) {
+Widget userAmountEditWidget({
+  required String amount,
+  required Function(String) onChanged,
+  required TextEditingController controller,
+}) {
   return SizedBox(
     width: MediaQuery.of(navigatorKey!.currentContext!).size.width / 2,
     child: TextFieldCommon(
+      style: GoogleFonts.alegreyaSansSc(),
       onChanged: onChanged,
       keyboardType: TextInputType.number,
       controller: controller,
@@ -68,7 +73,6 @@ Widget paymentMethodToggle({
   );
 }
 
-
 Widget userNameShowWidget({required String userName}) {
   return TextWidgetCommon(
     text: userName,
@@ -78,7 +82,10 @@ Widget userNameShowWidget({required String userName}) {
   );
 }
 
-Widget homeAppBar({required UserMobx userMobx,required TextEditingController controller,}) {
+Widget homeAppBar({
+  required UserMobx userMobx,
+  required TextEditingController controller,
+}) {
   return AppBar(
     title: const TextWidgetCommon(text: "Payee Manager"),
     actions: [

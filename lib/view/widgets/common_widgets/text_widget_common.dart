@@ -37,7 +37,7 @@ class TextWidgetCommon extends StatelessWidget {
       overflow: overflow,
       softWrap: softWrap,
       text,
-      style: GoogleFonts.abrilFatface(
+      style: GoogleFonts.alegreyaSansSc(
         fontSize: fontSize,
         color: textColor,
         fontWeight: fontWeight,
