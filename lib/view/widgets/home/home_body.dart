@@ -39,6 +39,7 @@ Widget homeBody({
               userMobx.updatePaymentAmount(value);
             } else {
               userMobx.updatePaymentAmount('0');
+              isSnackbarShown = false;
             }
           },
         );
