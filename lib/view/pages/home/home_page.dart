@@ -15,16 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController amountController = TextEditingController(text: '2500');
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final userMobx = Provider.of<UserMobx>(context, listen: false);
-      userMobx.fetchUser();
-    });
-  }
-
   @override
   void dispose() {
     amountController.dispose();

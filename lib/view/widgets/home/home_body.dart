@@ -13,32 +13,36 @@ Widget homeBody({
   required TextEditingController amountController,
 }) {
   final userMobx = Provider.of<UserMobx>(navigatorKey!.currentContext!);
+  bool isSnackbarShown = false;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
       userProfileCard(),
       kHeight15,
-      Observer(
-        builder: (_) => userAmountEditWidget(
+      Observer(builder: (_) {
+        return userAmountEditWidget(
           controller: amountController,
           amount: userMobx.paymentAmount,
           onChanged: (value) {
             if (value.isNotEmpty) {
               int amount = int.parse(amountController.text);
               if (amount <= 0 || amount > 2500) {
-                MessageShowHelper.showSnackbar(
-                  context: navigatorKey!.currentContext!,
-                  snackBarContent: "Amount must be in range 1-2500",
-                );
+                if (!isSnackbarShown) {
+                  isSnackbarShown = true;
+                  MessageShowHelper.showSnackbar(
+                    context: navigatorKey!.currentContext!,
+                    snackBarContent: "Amount must be in range 1-2500",
+                  );
+                }
               }
               userMobx.updatePaymentAmount(value);
             } else {
               userMobx.updatePaymentAmount('0');
             }
           },
-        ),
-      ),
+        );
+      }),
       kHeight10,
       Observer(
         builder: (_) {
