@@ -104,6 +104,22 @@ mixin _$UserMobx on _UserMobx, Store {
     });
   }
 
+  late final _$isDataEditedAtom =
+      Atom(name: '_UserMobx.isDataEdited', context: context);
+
+  @override
+  bool get isDataEdited {
+    _$isDataEditedAtom.reportRead();
+    return super.isDataEdited;
+  }
+
+  @override
+  set isDataEdited(bool value) {
+    _$isDataEditedAtom.reportWrite(value, super.isDataEdited, () {
+      super.isDataEdited = value;
+    });
+  }
+
   late final _$userProfilePictureUrlAtom =
       Atom(name: '_UserMobx.userProfilePictureUrl', context: context);
 
@@ -190,6 +206,7 @@ isLoading: ${isLoading},
 userName: ${userName},
 paymentAmount: ${paymentAmount},
 paymentMethod: ${paymentMethod},
+isDataEdited: ${isDataEdited},
 userProfilePictureUrl: ${userProfilePictureUrl},
 errorMessage: ${errorMessage}
     ''';

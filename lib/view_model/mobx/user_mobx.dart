@@ -4,8 +4,6 @@ import 'package:payee_info/model/models/user_model/user_model.dart';
 import 'package:payee_info/model/models/visitor_model/visitor_model.dart';
 import 'package:payee_info/model/repositories/user_repository.dart';
 import 'package:payee_info/model/repositories_impl/user_repository_impl.dart';
-
-// Generate the MobX Store code
 part 'user_mobx.g.dart';
 
 class UserMobx = _UserMobx with _$UserMobx;
@@ -16,18 +14,18 @@ abstract class _UserMobx with Store {
   _UserMobx();
   @observable
   UserModel? user;
-
   @observable
   ObservableList<Visitor> visitors = ObservableList<Visitor>();
-
   @observable
   bool isLoading = false;
   @observable
-  String userName = '';
+  String userName = 'Unknown User';
   @observable
   String paymentAmount = '2500';
   @observable
   String paymentMethod = 'cash';
+  @observable
+  bool isDataEdited = false;
 
   @observable
   String userProfilePictureUrl = '';
@@ -37,10 +35,14 @@ abstract class _UserMobx with Store {
    @action
   void addVisitor({required Visitor visitor,}) {
     visitors.add(visitor);
+    isDataEdited = true;
   }
   @action
   void updatePaymentAmount(String amount) {
-    paymentAmount = amount;
+    if (int.parse(amount)<=2500 && int.parse(amount)>=0) {
+      paymentAmount = amount;
+    }
+    isDataEdited = true;
   }
 
    @action
@@ -48,6 +50,7 @@ abstract class _UserMobx with Store {
     paymentMethod = 'cash';
     paymentAmount = '2500';
     visitors.clear();
+    isDataEdited = false;
   }
 
   @action

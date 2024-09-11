@@ -17,26 +17,36 @@ Widget visitorListWidget() {
         ),
       );
     }
+    final visitors = userMobx.visitors.reversed.toList();
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 20),
       itemBuilder: (context, index) {
-        return ListTile(
+        return
+         Container(
+          decoration: BoxDecoration(
+            color: kGrey.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(10),
+          ),child: ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          tileColor: kGrey.withOpacity(0.3),
           title: TextWidgetCommon(
-            text: userMobx.visitors[index].name!,
+            text: visitors[index].name!,
             fontWeight: FontWeight.bold,
             textColor: kBlack,
             fontSize: 16,
           ),
-          subtitle: TextWidgetCommon(
-            text: userMobx.visitors[index].amount.toString(),
+          trailing: TextWidgetCommon(
+            text: '\u20B9${visitors[index].amount.toString()}',
             fontWeight: FontWeight.w400,
             textColor: kBlack,
             fontSize: 15,
           ),
-        );
+        ));
       },
       separatorBuilder: (context, index) => kHeight10,
-      itemCount: userMobx.visitors.length,
+      itemCount: visitors.length,
     );
   });
 }

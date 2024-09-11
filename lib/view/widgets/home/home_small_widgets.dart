@@ -28,7 +28,7 @@ Widget visitorsAddButton({
 
 Widget userAmountShowWidget({required String amount}) {
   return TextWidgetCommon(
-    text: amount,
+    text: "\u20B9$amount",
     fontWeight: FontWeight.w500,
     textColor: kBlack,
     fontSize: 18,
@@ -43,6 +43,9 @@ Widget userAmountEditWidget({
   return SizedBox(
     width: MediaQuery.of(navigatorKey!.currentContext!).size.width / 2,
     child: TextFieldCommon(
+      prefix: const TextWidgetCommon(
+        text: '\u20B9',
+      ),
       style: GoogleFonts.alegreyaSansSc(),
       onChanged: onChanged,
       keyboardType: TextInputType.number,
@@ -60,15 +63,21 @@ Widget paymentMethodToggle({
   required Function(bool) onToggle,
 }) {
   return Row(
+     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      const TextWidgetCommon(text: 'CASH'),
-      Switch(
-        value: !isCash,
-        onChanged: (value) {
-          onToggle(!value);
-        },
+      const TextWidgetCommon(text: 'Payment Method', fontSize: 16,),
+      Row(
+        children: [
+          const TextWidgetCommon(text: 'CASH'),
+          Switch(
+            value: !isCash,
+            onChanged: (value) {
+              onToggle(!value);
+            },
+          ),
+          const TextWidgetCommon(text: 'UPI'),
+        ],
       ),
-      const TextWidgetCommon(text: 'UPI'),
     ],
   );
 }
@@ -94,17 +103,12 @@ Widget homeAppBar({
           userMobx.clearData();
           controller.text = '2500';
         },
-        child: const TextWidgetCommon(text: "Clear data"),
+        child: const Icon(
+          Icons.clear_all,
+          color: kBlack,
+        ),
       ),
     ],
-  );
-}
-
-Widget visitorsTitle() {
-  return const TextWidgetCommon(
-    text: "Visitors",
-    fontSize: 18,
-    textColor: kBlack,
-    fontWeight: FontWeight.w500,
+    backgroundColor: kWhite,
   );
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:payee_info/core/constants/colors.dart';
 import 'package:payee_info/core/constants/height_width.dart';
+import 'package:payee_info/core/utils/message_show_helper.dart';
 import 'package:payee_info/core/utils/navigator_key.dart';
+import 'package:payee_info/view/widgets/home/home_body_widgets.dart';
 import 'package:payee_info/view/widgets/home/home_small_widgets.dart';
 import 'package:payee_info/view/widgets/home/visitor_list_widget.dart';
 import 'package:payee_info/view_model/mobx/user_mobx.dart';
@@ -16,55 +17,25 @@ Widget homeBody({
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.start,
     children: [
-      Center(
-        child: Observer(
-          builder: (_) => Container(
-            height: 160,
-            width: 160,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: kGrey.withOpacity(0.2),
-              border: userMobx.paymentMethod == 'UPI'
-                  ? Border.all(color: kGreen, width: 3)
-                  : null,
-            ),
-            child: userMobx.userProfilePictureUrl.isNotEmpty
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(100),
-                    child: Image.network(
-                      userMobx.userProfilePictureUrl,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : const Icon(
-                    Icons.person,
-                    size: 100,
-                  ),
-          ),
-        ),
-      ),
-      kHeight10,
-      Center(
-        child: Observer(
-          builder: (_) => userNameShowWidget(
-            userName: userMobx.userName,
-          ),
-        ),
-      ),
-      Center(
-        child: Observer(
-          builder: (_) => userAmountShowWidget(
-            amount: userMobx.paymentAmount,
-          ),
-        ),
-      ),
+      userProfileCard(),
       kHeight15,
       Observer(
         builder: (_) => userAmountEditWidget(
           controller: amountController,
           amount: userMobx.paymentAmount,
           onChanged: (value) {
-            userMobx.updatePaymentAmount(value);
+            if (value.isNotEmpty) {
+              int amount = int.parse(amountController.text);
+              if (amount <= 0 || amount > 2500) {
+                MessageShowHelper.showSnackbar(
+                  context: navigatorKey!.currentContext!,
+                  snackBarContent: "Amount must be in range 1-2500",
+                );
+              }
+              userMobx.updatePaymentAmount(value);
+            } else {
+              userMobx.updatePaymentAmount('0');
+            }
           },
         ),
       ),
@@ -72,12 +43,10 @@ Widget homeBody({
       Observer(
         builder: (_) {
           return paymentMethodToggle(
-            isCash: userMobx.paymentMethod ==
-                'cash', // true if paymentMethod is 'cash'
+            isCash: userMobx.paymentMethod == 'cash',
             onToggle: (isCash) {
-              userMobx.paymentMethod = isCash
-                  ? 'cash'
-                  : 'UPI'; // Set the paymentMethod based on the toggle
+              userMobx.paymentMethod = isCash ? 'cash' : 'UPI';
+              userMobx.isDataEdited = true;
             },
           );
         },

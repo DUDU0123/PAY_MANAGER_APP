@@ -1,4 +1,4 @@
-package com.example.payee_info
+package com.payee.payee_manager_app
 
 import io.flutter.embedding.android.FlutterActivity
 
