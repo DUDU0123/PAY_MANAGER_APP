@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:payee_info/core/api/api_url.dart';
@@ -28,6 +29,10 @@ class UserData {
         log('Failed to load data');
         return null;
       }
+    } on SocketException catch (e) {
+      log("Network error: $e");
+    } on HttpException catch (e) {
+      log("Http error: $e");
     } catch (e) {
       log("Error: $e");
       return null;

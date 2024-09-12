@@ -25,4 +25,4 @@ To run this app by cloning the project, follow the steps given below:
 5. Now the project is ready to run.
 6. Run the application in any emulator or real device.
 
-To download and install the live application, check out [Amazon Appstore].
+To download and install the live application, check out [Amazon Appstore](https://www.amazon.com/gp/product/B0DGR5V8XP).
